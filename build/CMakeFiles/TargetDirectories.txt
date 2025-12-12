@@ -1,0 +1,3 @@
+/Users/korneev/Desktop/sem16/build/CMakeFiles/seminar16.dir
+/Users/korneev/Desktop/sem16/build/CMakeFiles/edit_cache.dir
+/Users/korneev/Desktop/sem16/build/CMakeFiles/rebuild_cache.dir
