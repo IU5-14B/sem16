@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет: Семинар 16 - Алгоритмы обработки массивов</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            flex: 1 1 300px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #4a6491;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #4a6491;
+            margin: 15px 0 10px;
+            font-size: 1.4rem;
+        }
+        
+        .complexity {
+            display: inline-block;
+            background-color: #e8f4fd;
+            color: #2c3e50;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-family: monospace;
+            margin: 5px 0;
+        }
+        
+        .algorithm-list {
+            list-style-type: none;
+            margin-left: 15px;
+        }
+        
+        .algorithm-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .algorithm-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .file-section {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4a6491;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #4a6491;
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                flex: 1 1 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Отчет по реализации алгоритмов</h1>
+        <div class="subtitle">Семинар 16: Алгоритмы обработки массивов</div>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Обзор проекта</h2>
+            <p>Проект включает реализацию трех задач по обработке массивов целых чисел:</p>
+            <ul class="algorithm-list">
+                <li><strong>Задача 1:</strong> Поиск медианы через сортировку</li>
+                <li><strong>Задача 3:</strong> Нахождение пересечения двух множеств</li>
+                <li><strong>Задача 4:</strong> Поиск минимального и максимального элемента</li>
+            </ul>
+            <p>Все алгоритмы реализованы на C++ и организованы в следующие файлы:</p>
+            <ul class="algorithm-list">
+                <li><strong>algorithms.hpp</strong> - заголовочный файл с объявлениями</li>
+                <li><strong>algorithms.cpp</strong> - реализации алгоритмов</li>
+                <li><strong>main.cpp</strong> - интерактивная программа для тестирования</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>Структура проекта</h2>
+            <div class="file-section">
+                <h3>algorithms.hpp</h3>
+                <p>Заголовочный файл содержит объявления всех функций и структур:</p>
+                <ul class="algorithm-list">
+                    <li><code>median_sort()</code> - медиана через сортировку</li>
+                    <li><code>intersection_bruteforce()</code> - пересечение "грубой силой"</li>
+                    <li><code>intersection_sort_two_pointers()</code> - пересечение через два указателя</li>
+                    <li><code>minmax_bruteforce()</code>, <code>minmax_sort()</code>, <code>minmax_decomposition()</code> - три алгоритма поиска min/max</li>
+                </ul>
+            </div>
+            
+            <div class="file-section">
+                <h3>main.cpp</h3>
+                <p>Интерактивная программа с меню для тестирования алгоритмов:</p>
+                <ul class="algorithm-list">
+                    <li>Ввод массивов вручную или генерация случайных</li>
+                    <li>Меню для выбора задачи</li>
+                    <li>Вывод результатов с информацией о сложности</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Задача 1: Медиана через сортировку</h2>
+        <p><strong>Описание:</strong> Функция находит медиану массива как элемент с индексом n/2 после сортировки.</p>
+        
+        <div class="complexity">Сложность: O(n log n)</div>
+        
+        <h3>Реализация:</h3>
+        <div class="code-block">int median_sort(std::vector&lt;int&gt; v) {
+    if (v.empty()) {
+        throw std::invalid_argument("median_sort: empty array");
+    }
+    std::sort(v.begin(), v.end());
+    return v[v.size() / 2];
+}</div>
+        
+        <h3>Особенности:</h3>
+        <ul class="algorithm-list">
+            <li>Принимает копию массива, чтобы не изменять исходные данные</li>
+            <li>Использует стандартную функцию сортировки <code>std::sort</code></li>
+            <li>Для нечетного размера массива возвращает средний элемент, для четного - элемент с индексом n/2</li>
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h2>Задача 3: Пересечение множеств</h2>
+        <p><strong>Описание:</strong> Нахождение пересечения двух множеств (массивов) целых чисел.</p>
+        
+        <h3>Алгоритм 1: "Грубая сила" (Brute Force)</h3>
+        <div class="complexity">Сложность: O(n*m)</div>
+        <p>Проверяет каждый элемент первого массива на наличие во втором массиве.</p>
+        
+        <div class="code-block">std::vector&lt;int&gt; intersection_bruteforce(const std::vector&lt;int&gt;& a, 
+                                       const std::vector&lt;int&gt;& b) {
+    std::vector&lt;int&gt; result;
+    for (int x : a) {
+        for (int y : b) {
+            if (x == y) {
+                if (!contains(result, x)) {
+                    result.push_back(x);
+                }
+                break;
+            }
+        }
+    }
+    return result;
+}</div>
+        
+        <h3>Алгоритм 2: Сортировка + два указателя</h3>
+        <div class="complexity">Сложность: O(n log n + m log m)</div>
+        <p>Сортирует оба массива и использует два указателя для нахождения общих элементов.</p>
+        
+        <div class="code-block">std::vector&lt;int&gt; intersection_sort_two_pointers(std::vector&lt;int&gt; a, 
+                                              std::vector&lt;int&gt; b) {
+    std::sort(a.begin(), a.end());
+    std::sort(b.begin(), b.end());
+    
+    std::vector&lt;int&gt; result;
+    std::size_t i = 0, j = 0;
+    
+    while (i &lt; a.size() && j &lt; b.size()) {
+        if (a[i] &lt; b[j]) {
+            ++i;
+        } else if (b[j] &lt; a[i]) {
+            ++j;
+        } else {
+            // a[i] == b[j]
+            int value = a[i];
+            if (result.empty() || result.back() != value) {
+                result.push_back(value);
+            }
+            ++i; ++j;
+        }
+    }
+    return result;
+}</div>
+    </div>
+    
+    <div class="card">
+        <h2>Задача 4: Минимум и максимум</h2>
+        <p><strong>Описание:</strong> Поиск минимального и максимального элемента в массиве тремя способами.</p>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Алгоритм</th>
+                    <th>Сложность</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>minmax_bruteforce</strong></td>
+                    <td><div class="complexity">O(n)</div></td>
+                    <td>Один проход по массиву, сравнение каждого элемента с текущими min и max</td>
+                </tr>
+                <tr>
+                    <td><strong>minmax_sort</strong></td>
+                    <td><div class="complexity">O(n log n)</div></td>
+                    <td>Сортировка массива, затем первый и последний элементы</td>
+                </tr>
+                <tr>
+                    <td><strong>minmax_decomposition</strong></td>
+                    <td><div class="complexity">O(n)</div></td>
+                    <td>Попарное сравнение элементов, затем поиск min среди локальных минимумов и max среди локальных максимумов</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Алгоритм декомпозиции (попарное сравнение):</h3>
+        <div class="code-block">MinMax minmax_decomposition(const std::vector&lt;int&gt;& v) {
+    if (v.empty()) throw std::invalid_argument(...);
+    if (v.size() == 1) return {v[0], v[0]};
+    
+    std::vector&lt;int&gt; local_mins, local_maxs;
+    std::size_t i = 0;
+    
+    while (i + 1 &lt; v.size()) {
+        int a = v[i], b = v[i + 1];
+        if (a &lt; b) {
+            local_mins.push_back(a);
+            local_maxs.push_back(b);
+        } else {
+            local_mins.push_back(b);
+            local_maxs.push_back(a);
+        }
+        i += 2;
+    }
+    
+    // если нечётное количество элементов
+    if (i &lt; v.size()) {
+        local_mins.push_back(v[i]);
+        local_maxs.push_back(v[i]);
+    }
+    
+    // поиск минимума среди local_mins
+    int mn = local_mins[0];
+    for (std::size_t k = 1; k &lt; local_mins.size(); ++k) {
+        if (local_mins[k] &lt; mn) mn = local_mins[k];
+    }
+    
+    // поиск максимума среди local_maxs
+    int mx = local_maxs[0];
+    for (std::size_t k = 1; k &lt; local_maxs.size(); ++k) {
+        if (local_maxs[k] &gt; mx) mx = local_maxs[k];
+    }
+    
+    return {mn, mx};
+}</div>
+        
+        <h3>Сравнение алгоритмов min/max:</h3>
+        <ul class="algorithm-list">
+            <li><span class="highlight">Грубая сила</span> и <span class="highlight">декомпозиция</span> работают за O(n), но декомпозиция выполняет примерно 3n/2 сравнений против 2n у грубой силы</li>
+            <li><span class="highlight">Сортировка</span> медленнее по асимптотике, но после сортировки могут быть полезны другие операции</li>
+            <li>Декомпозиция более эффективна по количеству сравнений, но требует дополнительной памяти для хранения локальных минимумов и максимумов</li>
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h2>Особенности реализации</h2>
+        
+        <h3>Обработка ошибок:</h3>
+        <ul class="algorithm-list">
+            <li>Все функции проверяют пустые входные массивы и выбрасывают исключения</li>
+            <li>В main.cpp используется блок try-catch для обработки исключений</li>
+        </ul>
+        
+        <h3>Устранение дубликатов:</h3>
+        <ul class="algorithm-list">
+            <li>В алгоритмах пересечения обеспечивается уникальность элементов в результате</li>
+            <li>Используется проверка <code>result.back() != value</code> и пропуск дубликатов</li>
+        </ul>
+        
+        <h3>Интерактивный интерфейс:</h3>
+        <ul class="algorithm-list">
+            <li>Поддержка ручного ввода и случайной генерации массивов</li>
+            <li>Валидация входных данных (размеры, диапазоны)</li>
+            <li>Четкое меню с пояснениями алгоритмов и их сложности</li>
+        </ul>
+    </div>
+    
+    <footer>
+        <p>Отчет по реализации алгоритмов для семинара 16</p>
+        <p>Все алгоритмы реализованы на C++ с использованием стандартной библиотеки</p>
+        <p>Дата составления отчета: <span id="current-date"></span></p>
+    </footer>
+
+    <script>
+        // Добавляем текущую дату в футер
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    </script>
+</body>
+</html>
